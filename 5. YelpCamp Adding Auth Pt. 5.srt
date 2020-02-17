@@ -1,0 +1,588 @@
+﻿1
+00:00:00,450 --> 00:00:01,380
+Welcome back.
+
+2
+00:00:01,470 --> 00:00:06,570
+In this video we're going to focus on getting the NAF bar to display the links correctly so that when
+
+3
+00:00:06,570 --> 00:00:10,190
+you're not signed in you only see log in and sign up.
+
+4
+00:00:10,260 --> 00:00:15,510
+But when you are signed in you only see log out and then we can also display a little message that says
+
+5
+00:00:15,600 --> 00:00:17,010
+signed in as.
+
+6
+00:00:17,160 --> 00:00:21,620
+And then the user name signed in several signed in rest eat whatever it is.
+
+7
+00:00:21,640 --> 00:00:27,270
+Initially it had all of this at the end of the part for video and I started to move it out into a separate
+
+8
+00:00:27,270 --> 00:00:31,260
+video so they could spend a little more time going into some detail and explaining how some of this
+
+9
+00:00:31,260 --> 00:00:32,620
+works.
+
+10
+00:00:32,640 --> 00:00:33,720
+So let's get started.
+
+11
+00:00:33,810 --> 00:00:35,790
+And what I'm going to do is open up Hetter.
+
+12
+00:00:35,970 --> 00:00:36,860
+Yes.
+
+13
+00:00:37,110 --> 00:00:42,510
+And here are the three lines that are responsible for those three links right here.
+
+14
+00:00:42,510 --> 00:00:47,270
+Log in sign up log out in order to hide and show them appropriately.
+
+15
+00:00:47,280 --> 00:00:49,940
+We need to add some simple E.J. esque logic.
+
+16
+00:00:50,460 --> 00:00:53,120
+We'll have an if statement that looks something like this.
+
+17
+00:00:53,130 --> 00:00:54,630
+This is just pseudo code.
+
+18
+00:00:54,630 --> 00:01:06,210
+But if no user then will show log in and register and then else will show the log out link.
+
+19
+00:01:06,210 --> 00:01:08,100
+Now of course this isn't real javascript.
+
+20
+00:01:08,220 --> 00:01:09,320
+We'll have to work on that.
+
+21
+00:01:09,450 --> 00:01:16,770
+But what we'll do is pass a variable just like we've done here where we're passing in campground or
+
+22
+00:01:16,770 --> 00:01:22,530
+we're doing it on time here repassing campground again except we're going to pass a user object and
+
+23
+00:01:22,530 --> 00:01:28,090
+that user will contain information about the logged in user or if there is no logged in user.
+
+24
+00:01:28,100 --> 00:01:32,960
+It will be empty undefined and we can use that user variable instead of our template.
+
+25
+00:01:33,150 --> 00:01:34,490
+So if it's undefined.
+
+26
+00:01:34,740 --> 00:01:36,850
+We'll check if the user is undefined.
+
+27
+00:01:36,960 --> 00:01:40,800
+Show these otherwise show the log at link.
+
+28
+00:01:40,800 --> 00:01:45,080
+So let's begin by figuring out how can we get that data about the user.
+
+29
+00:01:45,180 --> 00:01:51,880
+And I'll just start on one of these routes and I'll do the campgrounds index page which is here after
+
+30
+00:01:51,910 --> 00:01:56,910
+I get slash campgrounds because it's a nice simple route and a lot of our code redirects back to this
+
+31
+00:01:56,910 --> 00:01:57,520
+route.
+
+32
+00:01:58,050 --> 00:02:01,780
+And the secret to all of this the important part is request direct user.
+
+33
+00:02:02,040 --> 00:02:05,210
+So request that user will contain all of the information.
+
+34
+00:02:05,220 --> 00:02:09,840
+Well not all of it but the user name and the ID of the currently logged in user.
+
+35
+00:02:09,860 --> 00:02:10,920
+So I'll show you.
+
+36
+00:02:11,100 --> 00:02:19,720
+Let's just do a cancel that log requests at user and start the server up and then I'll go refresh.
+
+37
+00:02:21,090 --> 00:02:22,310
+And we get undefined.
+
+38
+00:02:22,410 --> 00:02:25,030
+And that's because there's no currently logged in user.
+
+39
+00:02:25,130 --> 00:02:26,930
+So request that users empty.
+
+40
+00:02:26,980 --> 00:02:27,990
+It doesn't exist.
+
+41
+00:02:28,290 --> 00:02:35,070
+But then once I log in what passport will do is create requests that user input the user data just the
+
+42
+00:02:35,110 --> 00:02:41,090
+username and the ID not the password or anything but username and ID inside of request user.
+
+43
+00:02:41,460 --> 00:02:52,740
+So a log in Severus password click log in Lets go look you can see this is now request that user.
+
+44
+00:02:52,920 --> 00:02:55,470
+It's going to be really useful for us in our templates.
+
+45
+00:02:55,530 --> 00:02:57,220
+So I'm going to pass that through now.
+
+46
+00:02:57,270 --> 00:02:58,180
+Get rid of that.
+
+47
+00:02:58,350 --> 00:03:03,930
+And then after campgrounds we'll just have another variable Akol current user that's equal to request
+
+48
+00:03:04,300 --> 00:03:05,280
+user.
+
+49
+00:03:05,460 --> 00:03:10,050
+And then in our template we can write some simple logic that checks if there is a current user.
+
+50
+00:03:10,320 --> 00:03:15,620
+And then in our template we can add some very simple logic using the current user variable.
+
+51
+00:03:15,720 --> 00:03:18,220
+So let's save and let's go to index that.
+
+52
+00:03:18,290 --> 00:03:18,750
+Yes.
+
+53
+00:03:18,780 --> 00:03:22,650
+Which is the campgrounds index and just at the very top.
+
+54
+00:03:22,800 --> 00:03:32,730
+Let's just add a little H for that just print out current user and let's restart the server.
+
+55
+00:03:33,880 --> 00:03:45,720
+And if I go right now we don't see anything but if I log in several again and again I now see current
+
+56
+00:03:45,720 --> 00:03:46,590
+user.
+
+57
+00:03:46,590 --> 00:03:52,320
+So we're now passing that data through into our template but rather than using it instead of this index
+
+58
+00:03:52,320 --> 00:03:56,850
+template we actually want to use it inside of the nav bar template the header.
+
+59
+00:03:57,240 --> 00:04:01,750
+And remember we do have access to any of the variables that we pass through our template.
+
+60
+00:04:01,890 --> 00:04:03,610
+Even inside of Parshall's.
+
+61
+00:04:03,690 --> 00:04:08,650
+So inside each us we're going to add an if statement and it just looks like this.
+
+62
+00:04:08,760 --> 00:04:20,970
+If there is no current user we could just do that then display those two links and then we'll have our
+
+63
+00:04:20,970 --> 00:04:21,450
+else
+
+64
+00:04:24,660 --> 00:04:30,380
+display the log out link and then of course we need our Ejaz tags.
+
+65
+00:04:30,540 --> 00:04:38,430
+So let's do that no equal signs just like that.
+
+66
+00:04:38,430 --> 00:04:39,250
+And we're almost done
+
+67
+00:04:42,550 --> 00:04:47,990
+so we're checking if a current user variable is empty then we're going to show these.
+
+68
+00:04:48,220 --> 00:04:49,950
+Otherwise we'll show the logout link.
+
+69
+00:04:50,320 --> 00:04:56,290
+But this will only work right now at least on this route slash campgrounds because we're not passing
+
+70
+00:04:56,290 --> 00:04:58,210
+current user through on any other routes.
+
+71
+00:04:58,300 --> 00:05:00,140
+But let's just make sure that it does work.
+
+72
+00:05:00,310 --> 00:05:04,660
+So I'll restart the app if I refresh the page.
+
+73
+00:05:04,750 --> 00:05:05,260
+Great.
+
+74
+00:05:05,260 --> 00:05:10,130
+I only see log in and sign up and that's because I'm not logged in.
+
+75
+00:05:10,450 --> 00:05:16,360
+Now if I click on logon we will have a problem which is that we have the header file and it's trying
+
+76
+00:05:16,360 --> 00:05:19,800
+to use current user but we didn't pass current user through.
+
+77
+00:05:19,990 --> 00:05:25,420
+So actually this will happen on any route that has are now Ackbar because we're not passing current
+
+78
+00:05:25,420 --> 00:05:28,930
+user through except on slash Capgras.
+
+79
+00:05:29,500 --> 00:05:35,520
+So what we want to do is pass current user through basically this line right here on every single route
+
+80
+00:05:35,530 --> 00:05:35,740
+.
+
+81
+00:05:36,040 --> 00:05:40,750
+And on some of them it might be empty some of them will have user data but we want it available on every
+
+82
+00:05:40,750 --> 00:05:41,220
+route.
+
+83
+00:05:41,530 --> 00:05:46,240
+And there's an easy way of doing that where we don't have to manually added to every single route and
+
+84
+00:05:46,250 --> 00:05:54,070
+up top before our routes just to add in another update use after use and we'll add our own little middleware
+
+85
+00:05:54,080 --> 00:05:54,210
+.
+
+86
+00:05:54,430 --> 00:05:57,650
+Whatever function we provide to it will be called on every route.
+
+87
+00:05:57,850 --> 00:06:03,420
+So we're going to give it a function request response and we need that next variable also.
+
+88
+00:06:04,360 --> 00:06:09,280
+And what we want to do is pass that request at user to every single template and there's an easy way
+
+89
+00:06:09,280 --> 00:06:10,180
+of doing that.
+
+90
+00:06:10,260 --> 00:06:12,930
+Sake rez locals.
+
+91
+00:06:13,110 --> 00:06:19,940
+Current User request user whatever we put in rest at local's is what's available instead of our template
+
+92
+00:06:20,390 --> 00:06:26,230
+and then the other really important thing is you need to move on to the actual next code because this
+
+93
+00:06:26,230 --> 00:06:29,040
+is a middleware that will run for every single route.
+
+94
+00:06:29,080 --> 00:06:31,570
+If we don't have this next it will just stop.
+
+95
+00:06:31,570 --> 00:06:36,400
+Nothing will happen next so we need to have the next in order to move on to that next middleware which
+
+96
+00:06:36,400 --> 00:06:39,430
+will actually be the route handler in most cases.
+
+97
+00:06:40,090 --> 00:06:45,580
+So now if we try this restart the server refresh the page.
+
+98
+00:06:45,580 --> 00:06:46,770
+This should work just fine.
+
+99
+00:06:46,900 --> 00:06:52,150
+If I go to log in I now have the log in form and I'm not getting an error.
+
+100
+00:06:52,360 --> 00:06:55,330
+And I see the correct links because I'm not logged in.
+
+101
+00:06:55,390 --> 00:06:57,400
+Now if I log in as sèvres again
+
+102
+00:07:00,790 --> 00:07:05,050
+I only see log out great and try clicking on log out.
+
+103
+00:07:05,710 --> 00:07:06,180
+Awesome.
+
+104
+00:07:06,190 --> 00:07:07,180
+So it's working.
+
+105
+00:07:07,210 --> 00:07:12,360
+The last thing that I wanted to do is that when you're signed in let's do this one more time.
+
+106
+00:07:12,810 --> 00:07:16,360
+You want to see up here rather than log in and sign up.
+
+107
+00:07:16,370 --> 00:07:20,920
+You want to see currently signed in as Zephyrus and that's pretty easy to do.
+
+108
+00:07:21,130 --> 00:07:22,290
+Instead of our headed each.
+
+109
+00:07:22,330 --> 00:07:30,010
+Yes we already have current user so if there is a current user in this else we'll just add another ally
+
+110
+00:07:31,360 --> 00:07:36,200
+and that Ally will just add in the text.
+
+111
+00:07:37,300 --> 00:07:41,300
+Let's do signed in as.
+
+112
+00:07:41,760 --> 00:07:46,050
+And then we just interpret or we add in with each as tags.
+
+113
+00:07:46,060 --> 00:07:54,250
+Current User dot username and save restart and let's see how this looks.
+
+114
+00:07:54,250 --> 00:07:57,810
+We might need to style it a little bit refresh.
+
+115
+00:07:58,000 --> 00:08:01,030
+Let's lie again.
+
+116
+00:08:05,860 --> 00:08:07,570
+Signed in as Severus.
+
+117
+00:08:07,660 --> 00:08:09,430
+And yes we do want to style that.
+
+118
+00:08:09,430 --> 00:08:17,330
+So let's make it an anchor tag like the other ones and we'll just not give it an H ref so you can get
+
+119
+00:08:17,440 --> 00:08:20,970
+finger tag Atra equals just the pound sign.
+
+120
+00:08:21,040 --> 00:08:25,780
+It might make sense for this to actually be a link to the profile page though which we don't have.
+
+121
+00:08:25,780 --> 00:08:30,790
+But if we had profile pages you could click this and it would take you to your profile but this is fine
+
+122
+00:08:30,790 --> 00:08:31,470
+for now.
+
+123
+00:08:31,780 --> 00:08:34,070
+So will log out that should go away.
+
+124
+00:08:34,150 --> 00:08:36,330
+Let's try registering and see how that works.
+
+125
+00:08:36,580 --> 00:08:42,000
+So I'll sign up as Mrs purple and the password will be purple.
+
+126
+00:08:42,010 --> 00:08:49,570
+Sign up and re get signed in as Mrs purple and we can log out and let's just double check everything
+
+127
+00:08:49,570 --> 00:08:49,730
+.
+
+128
+00:08:49,790 --> 00:08:59,950
+That if I try and add a new comment I have access to it but if I log out and I try and do that I can't
+
+129
+00:08:59,950 --> 00:09:00,120
+.
+
+130
+00:09:00,130 --> 00:09:01,550
+It asked me to log in first.
+
+131
+00:09:01,870 --> 00:09:05,690
+OK so we're officially done with the basics of adding auth to Joachim.
+
+132
+00:09:05,950 --> 00:09:09,660
+Let's take a moment to review the new things that we saw in this lesson.
+
+133
+00:09:09,790 --> 00:09:18,250
+In particular using request the user which we set right here request that user will be either empty
+
+134
+00:09:18,400 --> 00:09:23,830
+if no one signed in or it will contain the username in the ID of the current user so we're using an
+
+135
+00:09:23,830 --> 00:09:30,400
+after use which will call this function on every single wrap so it's a nice way to dry up or code where
+
+136
+00:09:30,400 --> 00:09:35,770
+we didn't have to go and do this on every route and we can actually get rid of it now because we're
+
+137
+00:09:35,770 --> 00:09:41,350
+passing it through using or after 8 years and then the other thing is that in our template we're just
+
+138
+00:09:41,350 --> 00:09:46,960
+writing a simple IF statement and combining that logic with each T.M. can be really powerful.
+
+139
+00:09:46,960 --> 00:09:48,320
+We can show and hide these buttons.
+
+140
+00:09:48,340 --> 00:09:50,580
+We can show who's currently logged in.
+
+141
+00:09:50,830 --> 00:09:52,090
+Really important stuff.
+
+142
+00:09:52,420 --> 00:09:54,900
+OK so that was a bit of a marathon definitely.
+
+143
+00:09:54,910 --> 00:09:57,730
+Five different sections but we got it to work.
+
+144
+00:09:57,760 --> 00:09:59,400
+We created the user models first.
+
+145
+00:09:59,560 --> 00:10:05,800
+We created the Sign-Up registration forms and routes and then log in and then the log out and then finally
+
+146
+00:10:05,800 --> 00:10:11,180
+we worked on the nav bar and showing and hiding links and displaying the currently logged in user.
+
+147
+00:10:11,230 --> 00:10:12,520
+All right I'll see you in the next unit
+
