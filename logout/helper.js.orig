@@ -44,6 +44,9 @@
         }
     };
     logout_common.init();
+<<<<<<< HEAD
     // this is samba commit
+=======
 	// test bracnh
+>>>>>>> update-comment
 });
