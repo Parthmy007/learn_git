@@ -44,4 +44,5 @@
         }
     };
     logout_common.init();
+    // this is samba commit
 });
